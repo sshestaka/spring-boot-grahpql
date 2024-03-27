@@ -1,0 +1,54 @@
+scalar BigDecimal
+
+type Query {
+    allBooks: [Book]
+    findById(id: ID!): Book
+}
+
+#MODEL TYPES
+type Book {
+    id: ID!
+    title: String!
+    author: String!
+    isbn: String!
+    price: BigDecimal!
+    description: String
+    cover_image: String
+    categories: [Category]
+    isDeleted: Boolean
+}
+type Category {
+    id: ID
+    name: String
+    description: String
+    isDeleted: Boolean
+}
+
+type Mutation {
+    saveBook(bookInput: BookInput): Book
+    saveCategory(category: CategoryInput): Category
+    updateBook(bookUpdate: BookUpdate): Book
+}
+
+#INPUT TYPES
+input BookInput {
+    title: String!
+    author: String!
+    isbn: String!
+    price: BigDecimal!
+    description: String
+    cover_image: String
+}
+input BookUpdate {
+    id: ID
+    title: String!
+    author: String!
+    isbn: String!
+    price: BigDecimal!
+    description: String
+    cover_image: String
+}
+input CategoryInput {
+    name: String
+    description: String
+}
